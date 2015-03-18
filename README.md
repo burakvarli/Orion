@@ -1,7 +1,7 @@
 # Oyun
 CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 
-*  Selma Esen AKBULUT - 
+*  Selma ESEN AKBULUT - 132238051
 *  Veli Burak VARLI - 132238012
 
 ## Güncelleme Notları
