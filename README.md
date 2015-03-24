@@ -7,6 +7,7 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 > 24.03.2015
 *  Kutu seçim eklendi
 *  Varış Noktası eklendi
+
 > 18.03.2015
 *  Proje dosyaları oluşturuldu
 *  Kamera kontrol script'i hazırlandı
