@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Kamera : MonoBehaviour
 {
-
     //hareket ayarları
     public float Hassasiyet = 25f;
     public float Hiz = 5f;
@@ -58,4 +57,5 @@ public class Kamera : MonoBehaviour
         if (transform.position.y < MinYakinlik)
             transform.position = new Vector3(transform.position.x, MinYakinlik, transform.position.z);
     }
+ 
 }

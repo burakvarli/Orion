@@ -7,19 +7,21 @@ public class Yonetici : MonoBehaviour
 
     public int Altin = 1000;
 
+    public GameObject VarisNoktasi;
+
     public List<Asker> Secilenler;
 
 	void Start()
     {
-        Secilenler.Clear();
+        this.Temizle();
 	}
 	
 	void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
             Sec();
-
-        if (Input.GetMouseButtonDown(1))
+  
+        if(Input.GetMouseButtonDown(1))
             Git();
 	}
 
@@ -30,19 +32,10 @@ public class Yonetici : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            if (hit.transform.tag == "Asker")
+            if (hit.transform.tag != "Asker")
             {
-                hit.transform.GetComponent<Asker>().Secildin(Input.GetKey(KeyCode.LeftControl));
-            }
-            else if (hit.transform.tag == "Ortam")
-            {
-                foreach (Asker asker in Secilenler)
-                {
-                    asker.GetComponent<Asker>().Cikarildin();
-                }
-
-                Secilenler.Clear();
-            }
+                this.Temizle();
+            }         
         }
     }
 
@@ -52,9 +45,12 @@ public class Yonetici : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            if (hit.transform.tag == "Ortam")
+        {      
+            if (hit.transform.tag == "Ortam" && Secilenler.Count > 0)
             {
+                VarisNoktasi.transform.position = new Vector3(hit.point.x, VarisNoktasi.transform.position.y, hit.point.z);
+                VarisNoktasi.SetActive(true);
+
                 foreach (Asker asker in Secilenler)
                 {
                     asker.GetComponent<Asker>().Git(hit.point);
@@ -63,34 +59,25 @@ public class Yonetici : MonoBehaviour
         }
     }
 
-
-    public void TekSeciliEkle(Asker asker)
-    {
-        foreach (Asker askr in Secilenler)
-        {
-            if (askr != asker)
-                askr.GetComponent<Asker>().Cikarildin();
-        }
-
-        Secilenler.Clear();
-        Secilenler.Add(asker);
-    }
-
-    public void CokluSeciliEkle(Asker asker)
+    public void Ekle(Asker asker)
     {
         if (!Secilenler.Contains(asker))
             Secilenler.Add(asker);
-        else
-        {
-            asker.GetComponent<Asker>().Cikarildin();
-            Secilenler.Remove(asker);
-        }
-            
     }
 
     public void Cikar(Asker asker)
     {
         Secilenler.Remove(asker);
+    }
+
+    public void Temizle()
+    {
+        foreach (Asker asker in Secilenler)
+        {
+            asker.GetComponent<Asker>().Cikarildin(true);
+        }
+
+        Secilenler.Clear();
     }
 
 }
