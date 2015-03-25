@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Yonetici : MonoBehaviour
@@ -9,10 +10,16 @@ public class Yonetici : MonoBehaviour
 
     public GameObject VarisNoktasi;
 
+    public Asker[] Askerler;
+
     public List<Asker> Secilenler;
+
+    public Text ParanizYok;
+    public Text AltinUI;
 
 	void Start()
     {
+        AltinUI.text = "Altın: " + Altin;
         this.Temizle();
 	}
 	
@@ -72,6 +79,9 @@ public class Yonetici : MonoBehaviour
 
     public void Temizle()
     {
+        if (Secilenler.Count <= 0)
+            return;
+
         foreach (Asker asker in Secilenler)
         {
             asker.GetComponent<Asker>().Cikarildin(true);
@@ -80,4 +90,43 @@ public class Yonetici : MonoBehaviour
         Secilenler.Clear();
     }
 
+    public void AskerYarat(int indis)
+    {
+        Asker YaratilacakAsker = Askerler[indis];
+
+        if (YaratilacakAsker.KacAltin <= Altin)
+        {
+            Altin -= YaratilacakAsker.KacAltin;
+            AltinUI.text = "Altın: " + Altin;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Vector3 pos = hit.point;
+                pos.y = 0;
+
+                Asker asker = Instantiate(YaratilacakAsker, pos, Quaternion.identity) as Asker;
+
+                asker.GetComponent<Onizleme>().OnizlemeModu(true);
+            }
+
+            
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(MesajVer(ParanizYok));
+        }
+    }
+
+    IEnumerator MesajVer(Text text)
+    {
+        text.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(4);
+
+        text.gameObject.SetActive(false);
+    }
 }

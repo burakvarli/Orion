@@ -4,6 +4,10 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 *  Veli Burak VARLI - 132238012
 
 ## Güncelleme Notları
+
+> 25.03.2015
+*  Asker yaratma script'i hazırlandı
+
 > 24.03.2015
 *  Kutu seçim eklendi
 *  Varış Noktası eklendi

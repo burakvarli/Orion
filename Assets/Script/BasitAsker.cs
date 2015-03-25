@@ -3,12 +3,12 @@ using System.Collections;
 
 public class BasitAsker : Asker
 {
-	void Start()
+    new void Start()
     {
         base.Start();
 	}
-	
-	void Update()
+
+    new void Update()
     {
         base.Update();
 	}

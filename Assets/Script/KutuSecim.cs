@@ -5,14 +5,7 @@ public class KutuSecim : MonoBehaviour {
 
     public RectTransform SecimKutusu;
 
-    Yonetici Yonetici;
-
     Vector2 BaslangicNoktasi = Vector2.zero;
-
-    void Start()
-    {
-        Yonetici = GameObject.FindGameObjectWithTag("Yonetici").GetComponent<Yonetici>();
-    }
 
     void Update()
     {

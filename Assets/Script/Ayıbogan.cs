@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Ayıbogan : Asker
 {
-    void Start()
+    new void Start()
     {
         base.Start();
 	}
-	
-	void Update()
+
+    new void Update()
     {
         base.Update();
 	}

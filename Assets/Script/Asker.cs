@@ -5,19 +5,16 @@ using System.Collections;
 
 public class Asker : MonoBehaviour
 {
-    public RectTransform SecimKutusu;
-
     public float Can;
     public float MaksCan = 100f;
     public float Hiz = 5;
 
     public int KacAltin = 10;
 
-    bool Secili = false;
-
     Yonetici Yonetici;
     Animator Animator;
     NavMeshAgent HareketKontrol;
+    RectTransform SecimKutusu;
 
     public void Start()
     {
@@ -25,25 +22,24 @@ public class Asker : MonoBehaviour
         Animator = GetComponent<Animator>();
         HareketKontrol = GetComponent<NavMeshAgent>();
         HareketKontrol.speed = Hiz;
+        SecimKutusu = GameObject.Find("SecimKutusu").GetComponent<RectTransform>();
         Can = MaksCan;
-        Animasyon("Bekle");
+        Animasyon("Bekle");      
 	}
 
     public void Update()
     {
-
-        if (HareketKontrol.remainingDistance > 1)
-            Animasyon("Koş");     
+        if (HareketKontrol.hasPath && HareketKontrol.remainingDistance > 1)
+            Animasyon("Koş");
         else
             Animasyon("Bekle");
-
+            
         if (Input.GetMouseButton(0))
             KutuSecimKontrol();
     }
 
     public void Secildin()
     {
-        Secili = true;
         gameObject.GetComponentInChildren<Projector>().enabled = true;
         
         Yonetici.Ekle(GetComponent<Asker>());
@@ -51,7 +47,6 @@ public class Asker : MonoBehaviour
 
     public void Cikarildin(bool YoneticiBiliyormu)
     {
-        Secili = false;
         gameObject.GetComponentInChildren<Projector>().enabled = false;
 
         if(!YoneticiBiliyormu)
@@ -123,5 +118,4 @@ public class Asker : MonoBehaviour
 
         this.Secildin();
     }
-
 }

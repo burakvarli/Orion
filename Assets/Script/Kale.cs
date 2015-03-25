@@ -4,12 +4,12 @@ using System.Collections;
 public class Kale : Yapi
 {
 
-	void Start()
+    new void Start()
     {
         base.Start();
 	}
-	
-	void Update()
+
+    new void Update()
     {
 	
 	}
