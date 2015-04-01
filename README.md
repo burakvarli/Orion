@@ -5,6 +5,11 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 
 ## Güncelleme Notları
 
+> 01.04.2015
+*  İmleç yönetim script'i hazırlandı
+*  Yapı oluşturma script'i hazırlandı
+*  Hazine sandıkları eklendi
+
 > 25.03.2015
 *  Asker yaratma script'i hazırlandı
 

@@ -15,11 +15,11 @@ public class Yapi : MonoBehaviour
         Can = MaksCan;
         Animator = GetComponent<Animator>();
 	}
-	
-	public void Update()
+
+    public void Update()
     {
-	
-	}
+        
+    }
 
     public void Hasar(float hasar)
     {

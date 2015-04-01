@@ -11,6 +11,6 @@ public class Kale : Yapi
 
     new void Update()
     {
-	
+        base.Update();
 	}
 }

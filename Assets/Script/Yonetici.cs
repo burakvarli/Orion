@@ -11,6 +11,7 @@ public class Yonetici : MonoBehaviour
     public GameObject VarisNoktasi;
 
     public Asker[] Askerler;
+    public Yapi[] Yapilar;
 
     public List<Asker> Secilenler;
 
@@ -52,8 +53,8 @@ public class Yonetici : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {      
-            if (hit.transform.tag == "Ortam" && Secilenler.Count > 0)
+        {
+            if ((hit.transform.tag == "Ortam" || hit.transform.tag == "Sandik") && Secilenler.Count > 0)
             {
                 VarisNoktasi.transform.position = new Vector3(hit.point.x, VarisNoktasi.transform.position.y, hit.point.z);
                 VarisNoktasi.SetActive(true);
@@ -109,6 +110,7 @@ public class Yonetici : MonoBehaviour
 
                 Asker asker = Instantiate(YaratilacakAsker, pos, Quaternion.identity) as Asker;
 
+                asker.GetComponent<Onizleme>().enabled = true;
                 asker.GetComponent<Onizleme>().OnizlemeModu(true);
             }
 
@@ -128,5 +130,42 @@ public class Yonetici : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         text.gameObject.SetActive(false);
+    }
+
+    public void AltinAl(int miktar)
+    {
+        Altin += miktar;
+
+        AltinUI.text = "Altın: " + Altin;
+    }
+
+    public void YapiYarat(int indis)
+    {
+        Yapi YapilacakYapi = Yapilar[indis];
+
+        if (YapilacakYapi.KacAltin <= Altin)
+        {
+            Altin -= YapilacakYapi.KacAltin;
+            AltinUI.text = "Altın: " + Altin;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Vector3 pos = hit.point;
+                pos.y = 0.9f;
+
+                Yapi yapi = Instantiate(YapilacakYapi, pos, Quaternion.identity) as Yapi;
+
+                yapi.GetComponent<Onizlemeyapi>().enabled = true;
+                yapi.GetComponent<Onizlemeyapi>().OnizlemeModu(true);
+            }
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(MesajVer(ParanizYok));
+        }
     }
 }
