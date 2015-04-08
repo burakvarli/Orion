@@ -52,7 +52,7 @@ public class Onizleme : MonoBehaviour
         }
 
         gameObject.GetComponent<Asker>().enabled = !aktif;
-        gameObject.GetComponent<NavMeshAgent>().enabled = !aktif;
+        //gameObject.GetComponent<NavMeshAgent>().enabled = !aktif;
     }
 	
 }

@@ -34,6 +34,7 @@ public class Onizlemeyapi : MonoBehaviour
         aktif = aktf;
 
         gameObject.GetComponent<Yapi>().enabled = !aktif;
+		gameObject.GetComponent<NavMeshAgent>().enabled = aktif;
         gameObject.GetComponent<NavMeshObstacle>().enabled = !aktif;
     }
 }

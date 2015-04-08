@@ -5,6 +5,10 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 
 ## Güncelleme Notları
 
+> 08.04.2015
+*  Arayüz'ün temel parçaları oluşturuldu.
+*  3 Farklı yapı eklendi.
+
 > 01.04.2015
 *  İmleç yönetim script'i hazırlandı
 *  Yapı oluşturma script'i hazırlandı

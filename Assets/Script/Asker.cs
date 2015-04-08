@@ -30,9 +30,9 @@ public class Asker : MonoBehaviour
     public void Update()
     {
         if (HareketKontrol.hasPath && HareketKontrol.remainingDistance > 1)
-            Animasyon("Koş");
-        else
-            Animasyon("Bekle");
+			Animasyon ("Koş");
+		else
+			Animasyon ("Bekle");
             
         if (Input.GetMouseButton(0))
             KutuSecimKontrol();
