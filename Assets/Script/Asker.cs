@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -15,16 +16,20 @@ public class Asker : MonoBehaviour
     Animator Animator;
     NavMeshAgent HareketKontrol;
     RectTransform SecimKutusu;
+    Slider CanUI;
 
     public void Start()
     {
         Yonetici = GameObject.FindGameObjectWithTag("Yonetici").GetComponent<Yonetici>();
         Animator = GetComponent<Animator>();
         HareketKontrol = GetComponent<NavMeshAgent>();
+        CanUI = GetComponentInChildren<Slider>();
         HareketKontrol.speed = Hiz;
         SecimKutusu = GameObject.Find("SecimKutusu").GetComponent<RectTransform>();
         Can = MaksCan;
-        Animasyon("Bekle");      
+        CanUI.maxValue = MaksCan;
+        CanUI.value = Can;
+        Animasyon("Bekle"); 
 	}
 
     public void Update()
@@ -56,6 +61,8 @@ public class Asker : MonoBehaviour
     public void Hasar(float hasar)
     {
         Can = Mathf.Clamp(Can - hasar, 0, MaksCan);
+
+        CanUI.value = Can;
 
         if (Can <= 0)
             Ol();

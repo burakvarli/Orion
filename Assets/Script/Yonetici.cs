@@ -168,4 +168,10 @@ public class Yonetici : MonoBehaviour
             StartCoroutine(MesajVer(ParanizYok));
         }
     }
+
+    public void AltinEkle(int miktar)
+    {
+        Altin += miktar;
+        AltinUI.text = "Altın: " + Altin;
+    }
 }

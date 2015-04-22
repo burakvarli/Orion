@@ -7,9 +7,14 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 
 ## Güncelleme Notları
 
+> 22.04.2015
+*  Askerlerin canlarını gösteren arayüz elemanı eklendi
+*  Yapılara altın üretme özelliği eklendi
+*  Altın üretme animasyonu eklendi
+
 > 08.04.2015
-*  Arayüz'ün temel parçaları oluşturuldu.
-*  3 Farklı yapı eklendi.
+*  Arayüz'ün temel parçaları oluşturuldu
+*  3 Farklı yapı eklendi
 
 > 01.04.2015
 *  İmleç yönetim script'i hazırlandı
