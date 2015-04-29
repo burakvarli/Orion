@@ -7,6 +7,11 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 
 ## Güncelleme Notları
 
+> 29.04.2015
+*  DüşmanYapı script'i hazırlandı
+*  Asker saldırı script'i hazırlandı
+*  Kamera açısı düzeltildi
+
 > 22.04.2015
 *  Askerlerin canlarını gösteren arayüz elemanı eklendi
 *  Yapılara altın üretme özelliği eklendi

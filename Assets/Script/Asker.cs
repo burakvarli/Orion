@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
@@ -8,7 +9,11 @@ public class Asker : MonoBehaviour
 {
     public float Can;
     public float MaksCan = 100f;
-    public float Hiz = 5;
+    public float Hiz = 5f;
+    public float Guc = 5f;
+    public float AtakHizi = 2f;
+
+    float SonrakiAtak = 0f;
 
     public int KacAltin = 10;
 
@@ -17,6 +22,8 @@ public class Asker : MonoBehaviour
     NavMeshAgent HareketKontrol;
     RectTransform SecimKutusu;
     Slider CanUI;
+
+    public Dusman Dusman = null;
 
     public void Start()
     {
@@ -29,18 +36,29 @@ public class Asker : MonoBehaviour
         Can = MaksCan;
         CanUI.maxValue = MaksCan;
         CanUI.value = Can;
-        Animasyon("Bekle"); 
+        Animasyon("Bekle");
 	}
 
     public void Update()
     {
-        if (HareketKontrol.hasPath && HareketKontrol.remainingDistance > 1)
+        if (HareketKontrol.hasPath)
 			Animasyon ("Koş");
 		else
 			Animasyon ("Bekle");
             
         if (Input.GetMouseButton(0))
             KutuSecimKontrol();
+
+        if (Dusman != null && Vector3.Distance(transform.position, Dusman.transform.position) <= Dusman.VurusMesafesi && Time.time > SonrakiAtak)
+        {
+            HareketKontrol.Stop();
+            HareketKontrol.ResetPath();
+
+            SonrakiAtak = Time.time + AtakHizi;
+            gameObject.transform.LookAt(Dusman.transform);
+            Animasyon("Vur");
+            Dusman.Hasar(Guc);
+        }
     }
 
     public void Secildin()
@@ -70,6 +88,7 @@ public class Asker : MonoBehaviour
 
     public void Git(Vector3 hedef)
     {
+        Dusman = null;
         HareketKontrol.SetDestination(hedef);
     }
 
@@ -95,7 +114,7 @@ public class Asker : MonoBehaviour
                 break;
 
                 default:
-                
+                    Animator.SetFloat("Yuru", -1);
                     Animator.SetTrigger(anim);
                 break;
             }
@@ -124,5 +143,45 @@ public class Asker : MonoBehaviour
         Yonetici.Temizle();
 
         this.Secildin();
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Dusman")
+        {
+            Dusman = col.gameObject.GetComponent<Dusman>();
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.tag == "Dusman")
+        {
+            Dusman = null;
+        }
+    }
+
+    void OnTriggerStay(Collider col)
+    {
+        if (Dusman != null && col.gameObject == Dusman.gameObject && Time.time > SonrakiAtak)
+        {
+            HareketKontrol.Stop();
+            HareketKontrol.ResetPath();
+
+            SonrakiAtak = Time.time + AtakHizi;
+            gameObject.transform.LookAt(Dusman.transform);
+            Animasyon("Vur");
+            Dusman.Hasar(Guc);
+        }
+    }
+
+    public void Saldir(Dusman dusman)
+    {
+        Dusman = dusman;
+
+        if (Vector3.Distance(transform.position, dusman.transform.position) >= dusman.VurusMesafesi)
+        {
+            HareketKontrol.SetDestination(Dusman.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
+        } 
     }
 }

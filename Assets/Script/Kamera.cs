@@ -49,13 +49,17 @@ public class Kamera : MonoBehaviour
 
     void Yakinlastir() {
 
-        transform.position += new Vector3(0, -Input.GetAxis("Mouse ScrollWheel") * YakinlastirmaHizi * Time.deltaTime, 0);
+        Camera.main.orthographicSize += -Input.GetAxis("Mouse ScrollWheel") * YakinlastirmaHizi * Time.deltaTime;
+
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, MinYakinlik, MaksYakinlik);
+
+        /* transform.position += new Vector3(0, -Input.GetAxis("Mouse ScrollWheel") * YakinlastirmaHizi * Time.deltaTime, 0);
 
         if (transform.position.y > MaksYakinlik)
             transform.position = new Vector3(transform.position.x, MaksYakinlik, transform.position.z);
 
         if (transform.position.y < MinYakinlik)
-            transform.position = new Vector3(transform.position.x, MinYakinlik, transform.position.z);
+            transform.position = new Vector3(transform.position.x, MinYakinlik, transform.position.z);*/
     }
  
 }

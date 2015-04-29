@@ -64,6 +64,13 @@ public class Yonetici : MonoBehaviour
                     asker.GetComponent<Asker>().Git(hit.point);
                 }
             }
+            else if (hit.transform.tag == "Dusman" && Secilenler.Count > 0)
+            {
+                foreach (Asker asker in Secilenler)
+                {
+                    asker.GetComponent<Asker>().Saldir(hit.transform.GetComponent<Dusman>());
+                }
+            }
         }
     }
 
