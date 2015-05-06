@@ -7,6 +7,10 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 
 ## Güncelleme Notları
 
+> 06.05.2015
+*  Şövalye eklendi
+*  Hatalar düzenlendi
+
 > 29.04.2015
 *  DüşmanYapı script'i hazırlandı
 *  Asker saldırı script'i hazırlandı

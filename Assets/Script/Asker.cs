@@ -140,9 +140,12 @@ public class Asker : MonoBehaviour
 
     void OnMouseDown()
     {
-        Yonetici.Temizle();
+        if (!GetComponent<Onizleme>().enabled)
+        { 
+            Yonetici.Temizle();
 
-        this.Secildin();
+            this.Secildin();
+        }
     }
 
     void OnTriggerEnter(Collider col)
@@ -182,6 +185,6 @@ public class Asker : MonoBehaviour
         if (Vector3.Distance(transform.position, dusman.transform.position) >= dusman.VurusMesafesi)
         {
             HareketKontrol.SetDestination(Dusman.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
-        } 
+        }
     }
 }

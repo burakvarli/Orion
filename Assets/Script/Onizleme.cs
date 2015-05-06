@@ -41,15 +41,14 @@ public class Onizleme : MonoBehaviour
     {
         aktif = aktf;
 
-        foreach (SkinnedMeshRenderer rnderer in GetComponentsInChildren<SkinnedMeshRenderer>())
+        /*foreach (SkinnedMeshRenderer rnderer in GetComponentsInChildren<SkinnedMeshRenderer>())
         {
             if (aktif)
                 rnderer.materials[0].shader = OnizlemeShader;
             else { 
                 rnderer.materials[0].shader = OrjinalShader;
-                Debug.Log(OrjinalShader);
             }
-        }
+        }*/
 
         gameObject.GetComponent<Asker>().enabled = !aktif;
         //gameObject.GetComponent<NavMeshAgent>().enabled = !aktif;

@@ -14,11 +14,14 @@ public class Onizlemeyapi : MonoBehaviour
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
-            {       
-                Vector3 pos = hit.point;
-                pos.y = 0.9f;
+            {
+                if (hit.transform.name == "Yer")
+                {
+                    Vector3 pos = hit.point;
+                    pos.y = 0.9f;
 
-                gameObject.transform.position = pos;
+                    gameObject.transform.position = pos;
+                }                
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -34,7 +37,6 @@ public class Onizlemeyapi : MonoBehaviour
         aktif = aktf;
 
         gameObject.GetComponent<Yapi>().enabled = !aktif;
-		gameObject.GetComponent<NavMeshAgent>().enabled = aktif;
         gameObject.GetComponent<NavMeshObstacle>().enabled = !aktif;
     }
 }
