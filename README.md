@@ -9,7 +9,7 @@ CBÜ Bilgisayar Programcılığı Sistem Analizi ve Tasarımı Projesi
 
 > 06.05.2015
 *  Şövalye eklendi
-*  Hatalar düzenlendi
+*  Hatalar düzeltildi
 
 > 29.04.2015
 *  DüşmanYapı script'i hazırlandı
