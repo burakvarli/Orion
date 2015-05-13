@@ -11,10 +11,10 @@ public class Dusman : MonoBehaviour
 
     Animator Animator;
 
-    void Start()
+    public void Start()
     {
+        Animator = GetComponent<Animator>(); ;
         Can = MaksCan;
-        Animator = GetComponent<Animator>();
     }
 
     public void Hasar(float hasar)
@@ -25,17 +25,31 @@ public class Dusman : MonoBehaviour
             YokOl();
     }
 
-    void YokOl()
+    protected void YokOl()
     {
-        Animasyon("Yokol");
+        Animasyon("Öl");
         Destroy(gameObject, 1);
     }
 
-    void Animasyon(string anim)
+    protected void Animasyon(string anim)
     {
         if (Animator.GetCurrentAnimatorStateInfo(0).IsName(anim) == false)
         {
-            Animator.SetTrigger(anim);
+            switch (anim)
+            {
+                case "Koş":
+                    Animator.SetFloat("Yuru", 1);
+                    break;
+
+                case "Bekle":
+                    Animator.SetFloat("Yuru", -1);
+                    break;
+
+                default:
+                    Animator.SetFloat("Yuru", -1);
+                    Animator.SetTrigger(anim);
+                    break;
+            }
         }
     }
 

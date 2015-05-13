@@ -5,17 +5,13 @@ using System.Collections.Generic;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
-public class Asker : MonoBehaviour
+public class Asker : Kullanici
 {
-    public float Can;
-    public float MaksCan = 100f;
     public float Hiz = 5f;
     public float Guc = 5f;
     public float AtakHizi = 2f;
 
     float SonrakiAtak = 0f;
-
-    public int KacAltin = 10;
 
     Yonetici Yonetici;
     Animator Animator;
@@ -27,15 +23,16 @@ public class Asker : MonoBehaviour
 
     public void Start()
     {
+        base.Start();
+
         Yonetici = GameObject.FindGameObjectWithTag("Yonetici").GetComponent<Yonetici>();
-        Animator = GetComponent<Animator>();
+        Animator = base.Animator;
         HareketKontrol = GetComponent<NavMeshAgent>();
         CanUI = GetComponentInChildren<Slider>();
         HareketKontrol.speed = Hiz;
         SecimKutusu = GameObject.Find("SecimKutusu").GetComponent<RectTransform>();
-        Can = MaksCan;
-        CanUI.maxValue = MaksCan;
-        CanUI.value = Can;
+        CanUI.maxValue = base.MaksCan;
+        CanUI.value = base.Can;
         Animasyon("Bekle");
 	}
 
@@ -76,13 +73,13 @@ public class Asker : MonoBehaviour
             Yonetici.Cikar(GetComponent<Asker>());
     }
 
-    public void Hasar(float hasar)
+    public override void Hasar(float hasar)
     {
-        Can = Mathf.Clamp(Can - hasar, 0, MaksCan);
+        base.Can = Mathf.Clamp(base.Can - hasar, 0, base.MaksCan);
 
-        CanUI.value = Can;
+        CanUI.value = base.Can;
 
-        if (Can <= 0)
+        if (base.Can <= 0)
             Ol();
     }
 
@@ -158,7 +155,7 @@ public class Asker : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Dusman")
+        if (col.gameObject.GetComponent<Dusman>() == Dusman)
         {
             Dusman = null;
         }

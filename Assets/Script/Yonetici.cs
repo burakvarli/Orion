@@ -181,4 +181,16 @@ public class Yonetici : MonoBehaviour
         Altin += miktar;
         AltinUI.text = "Altın: " + Altin;
     }
+
+    public void Kaybettik()
+    {
+        Time.timeScale = 0;
+        Debug.Log("Kaybettik");
+    }
+
+    public void Kazandik()
+    {
+        Time.timeScale = 0;
+        Debug.Log("Kazandık");
+    }
 }
